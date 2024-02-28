@@ -66,12 +66,14 @@ function createPlayer(token) {
 }
 
 controller = (function () {
+    let turn;
     
-    // could become infinite players with below
+    // could become infinite players with 
     // const players = []
     const player1 = createPlayer('X') 
     const player2 = createPlayer('O')
     const startGame = () => {
+        turn = player1;
     }
     return {player1, player2}
 }())

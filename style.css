@@ -1,0 +1,45 @@
+/* base stuff */
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    display: grid;
+    grid-template: 1fr 1fr 1fr / 1fr;
+}
+
+.page-title {
+    text-align: center;
+}
+
+/* main styles */
+
+.page-main {
+    display: flex;
+}
+
+.page-main>* {
+    flex: 1;
+}
+
+.page-main>.game-board {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* game board styles */
+
+.game-table {
+    height: 80%;
+    width: 80%;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+table td {
+    text-align: center;
+    border: 1px solid black;
+}

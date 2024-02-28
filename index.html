@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic Tac Toe</title>
     <script defer src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header class="page-header">
@@ -12,15 +13,43 @@
             Tic-Tac-Toe
         </h1>
     </header>
-    <main class="pageMain">
+    <main class="page-main">
         <div class="player-display player1">
-
+            <h3 class="player1-title">
+                Player 1
+            </h3>
+            <p class="token-display">
+                X
+            </p>
         </div>
         <div class="game-board">
-
+            <table class="game-table">
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         <div class="player-display player2">
-
+            <h3 class="player2-title">
+                Player 2
+            </h3>
+            <p class="token-display">
+                O
+            </p>
         </div>
     </main>
     <footer class="page-footer">
