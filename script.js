@@ -74,7 +74,21 @@ controller = (function () {
     const player2 = createPlayer('O')
     const startGame = () => {
         turn = player1;
+        display.update();
     }
-    return {player1, player2}
+    return {player1, player2, startGame}
+}())
+
+display = (function () {
+    const player1 = document.querySelector('.player1').style
+    const player2 = document.querySelector('.player2').style
+
+    const update = () => {
+        player1.backgroundColor = 'green';
+        player2.backgroundColor = 'red'
+        console.log(player1)
+    }
+    return {update}
 }())
 console.table(game.gameState)
+controller.startGame();
