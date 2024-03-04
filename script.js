@@ -12,7 +12,9 @@ game = (function () {
     }
 
     const updateGame  = () => {
+        display.update();
         winner = checkWin();
+
         console.table(game.gameState)
         if (winner) {
             console.log(winner)
@@ -84,11 +86,31 @@ display = (function () {
     const player2 = document.querySelector('.player2').style
 
     const update = () => {
+        renderBoard();
         player1.backgroundColor = 'green';
         player2.backgroundColor = 'red'
-        console.log(player1)
     }
-    return {update}
+    
+    const renderBoard = () => {
+      table = document.querySelector('.game-table')
+      table.style.backgroundColor = "gray"
+      
+    // clear table
+    while (table.firstChild) {
+      table.firstChild.remove();
+    }
+
+    for (row of game.gameState) {
+      let tableRow = document.createElement('tr');
+      table.appendChild(tableRow)
+      for (cell of row) {
+        let tableCell = document.createElement('td')
+        tableCell.textContent = cell; 
+        tableRow.appendChild(tableCell);
+      }
+    }
+  }
+    return {update, renderBoard}
 }())
 console.table(game.gameState)
 controller.startGame();
