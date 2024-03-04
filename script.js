@@ -68,17 +68,17 @@ function createPlayer(token) {
 }
 
 controller = (function () {
-    let turn;
-    
+  let turn = [];
+
     // could become infinite players with 
     // const players = []
     const player1 = createPlayer('X') 
     const player2 = createPlayer('O')
     const startGame = () => {
-        turn = player1;
+        turn.push(player1);
         display.update();
     }
-    return {player1, player2, startGame}
+    return {player1, turn, player2, startGame}
 }())
 
 display = (function () {
@@ -110,7 +110,7 @@ display = (function () {
       }
     }
   }
-    return {update, renderBoard}
+    return {update}
 }())
 console.table(game.gameState)
 controller.startGame();
