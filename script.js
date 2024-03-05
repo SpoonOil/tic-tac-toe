@@ -45,34 +45,29 @@ game = (function () {
         //default to DRAW
         let winningToken = ""
 
-        console.log(state)
-        console.log("starter winning token:", winningToken)
+        console.table(state)
+
         // check horizontal
        for (array of state) {
             if ((array[0] == array[1] && array[1] == array[2]) && array[0]) {
                 winningToken = array[0];
-                console.log("epic hor token:", winningToken)
             }
         }
 
         //check vertical
         for (let i = 0; i < state.length; i++) {
-            console.log('column:', i + 1)
             if ((state[0][i] == state[1][i] && state[1][i] == state[2][i]) && state[0][i]) {
                 winningToken = state[0][i]
-                console.log("epic vert token:", winningToken)
             }
         }
 
         //check diagonals HARDCODED XD
         if ((state[0][0] == state[1][1] && state[1][1] == state[2][2]) && state[0][0]) {
             winningToken = state[0][0]
-            console.log('epic diag token:', winningToken)
         }
 
-        if ((state[2][0] == state[1][1] && state[1][1] == state[0][2]) && state[0][0]) {
+        if ((state[0][2] == state[1][1] && state[1][1] == state[2][0]) && state[2][0]) {
             winningToken = state[1][1]
-            console.log('epic diag token:', winningToken)
         }
 
         //return
