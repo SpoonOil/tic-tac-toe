@@ -47,9 +47,9 @@ game = (function () {
     
     const getCurrentToken = () => {
         if (turn == "player1") {
-            return controller.player1.getToken();
+            return controller.Player1().getToken();
         } else {
-            return controller.player2.getToken();
+            return controller.Player2().getToken();
         }
     }
     
@@ -60,7 +60,15 @@ game = (function () {
     let winner;
     
     const getWinner = () => {
-        return winner
+        console.log(controller.Player1().getToken())
+        if (controller.Player1().getToken() == winner) {
+            return controller.Player1().name
+        } else if (controller.Player2().getToken() == winner) {
+            return controller.Player2().name
+        } else {
+            return
+        }
+        
     }
 
     const resetWinner = () => {
@@ -71,10 +79,14 @@ game = (function () {
         winner = checkWin();
         
         if (winner) {
-            setActive(false)
-            console.log('Winner is:', winner)
-            display.update()
+            onWin();
         }
+
+    }
+
+    function onWin() {
+        setActive(false);
+        display.update();
     }
     
     const checkWin = () => {
@@ -117,7 +129,7 @@ game = (function () {
     return {state, resetState, getState, placeToken, checkWin, getCurrentToken, getTurn, update, isActive, setActive, getWinner, resetWinner}
 })()
 
-function createPlayer(token) {
+function createPlayer(token, name) {
     const placeToken = (x,y) => {
         game.placeToken(token, x, y)
         game.swapTurn();
@@ -129,7 +141,7 @@ function createPlayer(token) {
         return token;
     }
     
-    return {getToken, placeToken}
+    return {getToken, placeToken, name}
     
 }
 
@@ -137,9 +149,11 @@ controller = (function () {
 
     // could become infinite players with
     // const players = []
-    const player1 = createPlayer('X')
-    const player2 = createPlayer('O')
+    let player1;
+    let player2;
     const startGame = () => {
+        player1 = createPlayer('X', document.querySelector('#player1-name').value)
+        player2 = createPlayer('O', document.querySelector('#player2-name').value)
         console.log(game.state) 
         game.resetState();
         console.log(game.state) 
@@ -147,7 +161,16 @@ controller = (function () {
         game.resetWinner();
         display.update();
     }
-    return {player1, player2, startGame}
+
+    let Player1 = () => {
+        return player1
+    }
+
+    let Player2 = () => {
+        return player2
+    }
+
+    return {Player1, Player2, startGame}
 }())
 
 display = (function () {
@@ -163,12 +186,18 @@ display = (function () {
     const renderPlayers = () => {
         if (game.getTurn() == "player1") {
             console.log()
-            player1.style.backgroundColor = "green"
-            player2.style.backgroundColor = "red"
+            player1.style.backgroundColor = "gray"
+            player2.style.backgroundColor = "white"
         } else {
-            player2.style.backgroundColor = "green"
-            player1.style.backgroundColor = "red"
+            player2.style.backgroundColor = "gray"
+            player1.style.backgroundColor = "white"
         }
+
+        p1Title = document.querySelector('.player1-title')
+        p2Title = document.querySelector('.player2-title')
+        p1Title.innerText = controller.Player1().name
+        p2Title.innerText = controller.Player2().name
+
     }
 
     const renderMessage = () => {
