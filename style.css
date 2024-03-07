@@ -6,7 +6,7 @@ html {
 body {
     height: 100%;
     display: grid;
-    grid-template: 1fr 1fr 1fr / 1fr;
+    grid-template: min-content 1fr 2fr 0.2fr / 1fr;
 }
 
 .page-title {
